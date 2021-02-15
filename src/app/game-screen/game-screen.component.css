@@ -1,0 +1,51 @@
+.game-screen-container {
+  display: grid;
+  grid-template-columns: 10fr 14fr 1fr 7fr 1fr;
+  grid-template-rows: 1fr 4fr 4fr 1fr auto auto 1fr 4fr 1fr;
+}
+
+div {
+  border: 1px solid black;
+}
+
+.message {
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+}
+
+.time {
+  grid-column: 4 / span 1;
+  grid-row: 2 / span 1;
+}
+
+.status {
+  grid-column: 2 / span 1;
+  grid-row: 3 / span 2;
+}
+
+.score {
+  grid-column: 4 / span 1;
+  grid-row: 3 / span 1;
+}
+
+.the-game {
+  display: grid;
+  place-items: center;
+  grid-column: 2 / span 1;
+  grid-row: 5 / span 1;
+}
+
+.history {
+  grid-column: 4 / span 1;
+  grid-row: 5 / span 4;
+}
+
+.controls {
+  grid-column: 2 / span 1;
+  grid-row: 6 / span 1;
+}
+
+.exit {
+  grid-column: 2 / span 1;
+  grid-row: 8 / span 1;
+}

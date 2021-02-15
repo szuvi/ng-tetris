@@ -1,0 +1,12 @@
+div {
+  margin-bottom: 0;
+}
+.main-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.direction-controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}

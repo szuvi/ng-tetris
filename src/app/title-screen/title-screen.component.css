@@ -1,0 +1,24 @@
+:host {
+  display: grid;
+  place-items: center;
+}
+.title-screen-container {
+  margin-top: 4rem;
+  display: grid;
+  max-width: 450px;
+}
+h1 {
+  text-align: center;
+}
+
+div {
+  margin-bottom: 1rem;
+}
+
+button {
+  margin-top: 1rem;
+}
+
+.hidden {
+  display: none;
+}
