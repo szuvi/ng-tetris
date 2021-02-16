@@ -8,8 +8,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import { TetrisCoreComponent } from 'ngx-tetris';
-import { User, Commands } from '../Interfaces';
-import Timer from '../timer/Timer';
+import { User, Commands } from '../../Interfaces';
+import Timer from '../../helpers/timer/Timer';
+import HistoryStamp from '../../helpers/HistoryStamp/HistoryStamp';
+
 @Component({
   selector: 'app-game-screen',
   templateUrl: './game-screen.component.html',
@@ -22,9 +24,12 @@ export class GameScreenComponent implements OnInit, OnDestroy {
   private tetris: TetrisCoreComponent;
   private timer: Timer;
   private interval: number;
+  public gameHistory: Array<HistoryStamp> = [];
   public gameStatus = 'Paused';
   public timePassed = '0.00';
   public score = 0;
+
+  // Component lifecycle functions
 
   ngOnInit() {
     this.timer = new Timer();
@@ -37,31 +42,41 @@ export class GameScreenComponent implements OnInit, OnDestroy {
     clearInterval(this.interval);
   }
 
+  // Game  flow controllers
+
   public handleStateCommand(command) {
-    // Game Control
     this.tetris[Commands[command]]();
-    // Game Status Control
     this.changeStatus(command);
-    // Handle Timer;
     this.handleTimer(command);
+    this.gameHistory.push(new HistoryStamp(command, this.timer.getTime()));
+    if (command === 'reset') {
+      this.gameHistory = [];
+    }
   }
 
   public handleDirCommand(command) {
     this.tetris[Commands[command]]();
+    this.gameHistory.push(new HistoryStamp(command, this.timer.getTime()));
   }
 
   public onLineCleared() {
     this.score += 10;
+    this.gameHistory.push(
+      new HistoryStamp('line cleared', this.timer.getTime())
+    );
   }
 
   public onGameOver() {
     this.gameStatus = 'GAME OVER';
     this.timer.pause();
+    this.gameHistory.push(new HistoryStamp('game over', this.timer.getTime()));
   }
 
   public handleExit() {
     this.exit.emit();
   }
+
+  // Helpers
 
   private changeStatus(command) {
     switch (command) {

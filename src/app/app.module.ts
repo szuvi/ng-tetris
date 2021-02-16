@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { TetrisCoreModule } from 'ngx-tetris';
-import { TitleScreenComponent } from './title-screen/title-screen.component';
-import { GameScreenComponent } from './game-screen/game-screen.component';
-import { ControlsComponent } from './game-screen/controls/controls.component';
-import { FormsModule } from '@angular/forms';
-import { InfoBoxComponent } from './game-screen/info-box/info-box.component';
-import { GameHistoryComponent } from './game-screen/game-history/game-history.component';
-import { ExitButtonComponent } from './game-screen/exit-button/exit-button.component';
+import { TitleScreenComponent } from './components/title-screen/title-screen.component';
+import { GameScreenComponent } from './components/game-screen/game-screen.component';
+import { ControlsComponent } from './components/./game-screen/controls/controls.component';
+import { InfoBoxComponent } from './components/./game-screen/info-box/info-box.component';
+import { GameHistoryComponent } from './components/./game-screen/game-history/game-history.component';
+import { ExitButtonComponent } from './components/./game-screen/exit-button/exit-button.component';
+import { SortPipe } from './sort.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import { ExitButtonComponent } from './game-screen/exit-button/exit-button.compo
     InfoBoxComponent,
     GameHistoryComponent,
     ExitButtonComponent,
+    SortPipe,
   ],
   imports: [BrowserModule, TetrisCoreModule, FormsModule],
   providers: [],

@@ -1,0 +1,51 @@
+<div class="nes-container is-dark with-title">
+  <p class="title">Game history</p>
+  <div
+    style="
+      background-color: #212529;
+      padding: 1rem 1.2rem 1rem 1rem;
+      width: calc(100% + 8px);
+    "
+  >
+    <label for="dark_select" style="color: #fff">Show:</label>
+    <div class="nes-select is-dark">
+      <select #filter required id="dark_select">
+        <option value="all">All</option>
+        <option value="start">Starts</option>
+        <option value="pause">Pauses</option>
+        <option value="reset">Resets</option>
+        <option value="move">Moves</option>
+        <option value="game over">Game overs</option>
+        <option value="line cleared">Points</option>
+      </select>
+    </div>
+
+    <div style="background-color: #212529; padding: 1rem 0">
+      <p>Sort by:</p>
+      <label>
+        <input
+          #sort
+          type="radio"
+          class="nes-radio is-dark"
+          name="answer-dark"
+          checked
+        />
+        <span>Old</span>
+      </label>
+
+      <label>
+        <input type="radio" class="nes-radio is-dark" name="answer-dark" />
+        <span>New</span>
+      </label>
+    </div>
+  </div>
+  <div class="list-container">
+    <ul>
+      <li
+        *ngFor="let stamp of history | sortAndFilter: sort.checked:filter.value"
+      >
+        {{ (stamp.timeStamp / 1000).toFixed(2) }} {{ stamp.name }}
+      </li>
+    </ul>
+  </div>
+</div>

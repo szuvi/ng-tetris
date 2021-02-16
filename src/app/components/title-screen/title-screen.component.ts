@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { User } from '../Interfaces';
+import { User } from '../../Interfaces';
 
 @Component({
   selector: 'title-screen',

@@ -24,7 +24,7 @@
       (gameOver)="onGameOver()"
     ></tetris-core>
   </div>
-  <game-history class="history"></game-history>
+  <game-history class="history" [history]="gameHistory"></game-history>
   <controls
     [gameStatus]="gameStatus"
     (dirCommand)="handleDirCommand($event)"
