@@ -16,4 +16,8 @@ export class AppComponent {
   public startGame(): void {
     this.gameActiveState = true;
   }
+
+  public exitGame(): void {
+    this.gameActiveState = false;
+  }
 }

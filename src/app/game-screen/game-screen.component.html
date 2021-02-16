@@ -25,12 +25,13 @@
     ></tetris-core>
   </div>
   <game-history class="history"></game-history>
-  <app-controls
+  <controls
+    [gameStatus]="gameStatus"
     (dirCommand)="handleDirCommand($event)"
     (stateCommand)="handleStateCommand($event)"
     class="controls"
-  ></app-controls>
-  <exit-button class="exit">exit</exit-button>
+  ></controls>
+  <exit-button class="exit" (click)="handleExit()">Exit</exit-button>
 </div>
 
 <!-- < class="the-game"><tetris-core #game></tetris-core></> -->

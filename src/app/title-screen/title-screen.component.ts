@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../Interfaces';
 
 @Component({
@@ -6,7 +6,7 @@ import { User } from '../Interfaces';
   templateUrl: './title-screen.component.html',
   styleUrls: ['./title-screen.component.css'],
 })
-export class TitleScreenComponent {
+export class TitleScreenComponent implements OnInit {
   @Input() user: User;
   @Output() start = new EventEmitter<void>();
   public buttonDisabled = true;
@@ -23,6 +23,11 @@ export class TitleScreenComponent {
       text: 'Incorrect email input!',
     },
   };
+
+  ngOnInit() {
+    this.user.name = '';
+    this.user.email = '';
+  }
 
   public onNameChange(): void {
     if (this.user.name.length < 3) {
