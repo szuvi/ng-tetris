@@ -8,14 +8,40 @@
 <div class="nes-container with-title">
   <p class="title">Controls</p>
   <div class="main-controls">
-    <button class="nes-btn is-success">Start</button>
-    <button class="nes-btn is-error">Stop</button>
-    <button class="nes-btn is-warning">Reset</button>
+    <button
+      name="start"
+      (click)="handleStateCommand($event)"
+      class="nes-btn is-success"
+    >
+      Start
+    </button>
+    <button
+      name="pause"
+      (click)="handleStateCommand($event)"
+      class="nes-btn is-error"
+    >
+      Pause
+    </button>
+    <button
+      name="reset"
+      (click)="handleStateCommand($event)"
+      class="nes-btn is-warning"
+    >
+      Reset
+    </button>
   </div>
   <div class="direction-controls">
-    <button class="nes-btn">Left</button>
-    <button class="nes-btn">Down</button>
-    <button class="nes-btn">Right</button>
-    <button class="nes-btn">Rotate</button>
+    <button name="left" (click)="handleDirCommand($event)" class="nes-btn">
+      Left
+    </button>
+    <button name="down" (click)="handleDirCommand($event)" class="nes-btn">
+      Down
+    </button>
+    <button name="right" (click)="handleDirCommand($event)" class="nes-btn">
+      Right
+    </button>
+    <button name="rotate" (click)="handleDirCommand($event)" class="nes-btn">
+      Rotate
+    </button>
   </div>
 </div>

@@ -1,12 +1,36 @@
 <div class="game-screen-container">
-  <div class="message">Have a nice game</div>
-  <div class="time">time passed</div>
-  <div class="status">game status</div>
-  <div class="score">score</div>
-  <div class="the-game"><tetris-core></tetris-core></div>
-  <div class="history">game-history</div>
-  <app-controls class="controls"></app-controls>
-  <div class="exit">exit</div>
+  <info-box
+    class="message"
+    [message]="'Have a nice game ' + user.name"
+  ></info-box>
+  <info-box class="time" [message]="'Time played: ' + timePassed"></info-box>
+  <info-box
+    class="status"
+    [border]="true"
+    [message]="gameStatus"
+    [centered]="true"
+    [title]="'Game status'"
+  ></info-box>
+  <info-box
+    class="score"
+    [message]="score.toString()"
+    [centered]="true"
+    [border]="true"
+    [title]="'Score'"
+  ></info-box>
+  <div class="the-game nes-container">
+    <tetris-core
+      (lineCleared)="onLineCleared()"
+      (gameOver)="onGameOver()"
+    ></tetris-core>
+  </div>
+  <game-history class="history"></game-history>
+  <app-controls
+    (dirCommand)="handleDirCommand($event)"
+    (stateCommand)="handleStateCommand($event)"
+    class="controls"
+  ></app-controls>
+  <exit-button class="exit">exit</exit-button>
 </div>
 
 <!-- < class="the-game"><tetris-core #game></tetris-core></> -->

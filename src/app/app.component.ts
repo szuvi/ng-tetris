@@ -6,7 +6,7 @@ import { User } from './Interfaces';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public gameActiveState = false;
+  public gameActiveState = true; // TODO Change to false to start
 
   public user: User = {
     name: '',

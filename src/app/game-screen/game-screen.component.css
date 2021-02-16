@@ -1,11 +1,7 @@
 .game-screen-container {
   display: grid;
   grid-template-columns: 10fr 14fr 1fr 7fr 1fr;
-  grid-template-rows: 1fr 4fr 4fr 1fr auto auto 1fr 4fr 1fr;
-}
-
-div {
-  border: 1px solid black;
+  grid-template-rows: 1fr 2fr auto 1fr auto auto 1fr 4fr;
 }
 
 .message {
@@ -29,6 +25,7 @@ div {
 }
 
 .the-game {
+  padding: 0.3rem;
   display: grid;
   place-items: center;
   grid-column: 2 / span 1;
@@ -37,7 +34,7 @@ div {
 
 .history {
   grid-column: 4 / span 1;
-  grid-row: 5 / span 4;
+  grid-row: 5 / span 3;
 }
 
 .controls {
@@ -48,4 +45,61 @@ div {
 .exit {
   grid-column: 2 / span 1;
   grid-row: 8 / span 1;
+}
+
+@media screen and (max-width: 900px) {
+  .game-screen-container {
+    grid-template-columns: 1fr 14fr 1fr 7fr 1fr;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .game-screen-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .message {
+    display: none;
+  }
+
+  .time {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+  }
+
+  .status {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    max-height: 80px;
+    font-size: 10px;
+  }
+
+  .score {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    max-height: 80px;
+    font-size: 10px;
+  }
+
+  .the-game {
+    display: grid;
+    place-items: center;
+    grid-column: 1 / span 2;
+    grid-row: 3 / span 1;
+  }
+
+  .controls {
+    grid-column: 1 / span 2;
+    grid-row: 4 / span 1;
+  }
+
+  .history {
+    display: none;
+  }
+
+  .exit {
+    grid-column: 1 / span 2;
+    grid-row: 5 / span 1;
+  }
 }

@@ -7,6 +7,9 @@ import { TitleScreenComponent } from './title-screen/title-screen.component';
 import { GameScreenComponent } from './game-screen/game-screen.component';
 import { ControlsComponent } from './game-screen/controls/controls.component';
 import { FormsModule } from '@angular/forms';
+import { InfoBoxComponent } from './game-screen/info-box/info-box.component';
+import { GameHistoryComponent } from './game-screen/game-history/game-history.component';
+import { ExitButtonComponent } from './game-screen/exit-button/exit-button.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +17,9 @@ import { FormsModule } from '@angular/forms';
     TitleScreenComponent,
     GameScreenComponent,
     ControlsComponent,
+    InfoBoxComponent,
+    GameHistoryComponent,
+    ExitButtonComponent,
   ],
   imports: [BrowserModule, TetrisCoreModule, FormsModule],
   providers: [],
