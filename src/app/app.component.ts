@@ -6,7 +6,7 @@ import { User } from './Interfaces';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public gameActiveState = true; // TODO Change to false to start
+  public gameActiveState = true;
 
   public user: User = {
     name: '',
@@ -29,3 +29,4 @@ export class AppComponent {
 // TODO:
 //  - add more points for multiple lines, combos points
 //  - add history option in mobile view
+//  - add rwd for smaller screens

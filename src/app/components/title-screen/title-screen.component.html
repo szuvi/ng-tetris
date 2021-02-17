@@ -9,7 +9,7 @@
     <label for="name">Your name</label>
     <input
       (keyup)="onNameChange()"
-      (keydown.enter)="submitForm()"
+      (keydown.enter)="onSubmitForm()"
       [(ngModel)]="user.name"
       type="text"
       id="name"
@@ -29,7 +29,7 @@
     <input
       (keyup)="onEmailChange()"
       [(ngModel)]="user.email"
-      (keydown.enter)="submitForm()"
+      (keydown.enter)="onSubmitForm()"
       type="text"
       id="email"
       class="nes-input"
@@ -44,7 +44,7 @@
   </div>
 
   <button
-    (click)="submitForm()"
+    (click)="onSubmitForm()"
     type="button"
     [disabled]="buttonDisabled"
     class="nes-btn is-success"

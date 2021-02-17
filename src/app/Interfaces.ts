@@ -12,3 +12,9 @@ export const Commands = {
   down: 'actionDown',
   rotate: 'actionRotate',
 };
+
+enum GameStatus {
+  started = 'Started',
+  paused = 'Paused',
+  gameOver = 'GAME OVER',
+}

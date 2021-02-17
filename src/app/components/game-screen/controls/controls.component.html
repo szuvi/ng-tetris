@@ -1,46 +1,57 @@
-<!-- <button (click)="game.actionStart()">Start</button>
-<button (click)="game.actionStop()">Stop</button>
-<button (click)="game.actionReset()">Reset</button>
-<button (click)="game.actionRotate()">Rotate</button>
-<button (click)="game.actionLeft()">Left</button>
-<button (click)="game.actionRight()">Right</button>
-<button (click)="game.actionDown()">Down</button> -->
 <div class="nes-container with-title">
   <p class="title">Controls</p>
+
   <div class="main-controls">
     <button
       name="start"
-      (click)="handleStateCommand($event)"
+      (click)="handleStateCommand($event.target.name)"
       class="nes-btn is-success"
     >
       Start
     </button>
     <button
       name="pause"
-      (click)="handleStateCommand($event)"
+      (click)="handleStateCommand($event.target.name)"
       class="nes-btn is-error"
     >
       Pause
     </button>
     <button
       name="reset"
-      (click)="handleStateCommand($event)"
+      (click)="handleStateCommand($event.target.name)"
       class="nes-btn is-warning"
     >
       Reset
     </button>
   </div>
+
   <div class="direction-controls">
-    <button name="left" (click)="handleDirCommand($event)" class="nes-btn">
+    <button
+      name="left"
+      (click)="handleDirCommand($event.target.name)"
+      class="nes-btn"
+    >
       Left
     </button>
-    <button name="down" (click)="handleDirCommand($event)" class="nes-btn">
+    <button
+      name="down"
+      (click)="handleDirCommand($event.target.name)"
+      class="nes-btn"
+    >
       Down
     </button>
-    <button name="right" (click)="handleDirCommand($event)" class="nes-btn">
+    <button
+      name="right"
+      (click)="handleDirCommand($event.target.name)"
+      class="nes-btn"
+    >
       Right
     </button>
-    <button name="rotate" (click)="handleDirCommand($event)" class="nes-btn">
+    <button
+      name="rotate"
+      (click)="handleDirCommand($event.target.name)"
+      class="nes-btn"
+    >
       Rotate
     </button>
   </div>

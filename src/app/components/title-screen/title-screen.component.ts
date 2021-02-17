@@ -9,8 +9,8 @@ import { User } from '../../Interfaces';
 export class TitleScreenComponent implements OnInit {
   @Input() user: User;
   @Output() start = new EventEmitter<void>();
-  public buttonDisabled = true;
 
+  public buttonDisabled = true;
   public errors = {
     nameError: {
       status: false,
@@ -24,7 +24,7 @@ export class TitleScreenComponent implements OnInit {
     },
   };
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.user.name = '';
     this.user.email = '';
   }
@@ -51,9 +51,15 @@ export class TitleScreenComponent implements OnInit {
     this.checkButton();
   }
 
-  public checkButton() {
-    console.log(this.buttonDisabled);
+  public onSubmitForm(): void {
+    if (!this.buttonDisabled) {
+      this.start.emit();
+    } else {
+      this.triggerErrors();
+    }
+  }
 
+  private checkButton(): void {
     this.buttonDisabled =
       !this.user.name ||
       !this.user.email ||
@@ -61,16 +67,8 @@ export class TitleScreenComponent implements OnInit {
       this.errors.emailError.status;
   }
 
-  public triggerErrors() {
+  private triggerErrors(): void {
     this.errors.nameError.showError = this.errors.nameError.status;
     this.errors.emailError.showError = this.errors.emailError.status;
-  }
-
-  public submitForm(): void {
-    if (!this.buttonDisabled) {
-      this.start.emit();
-    } else {
-      this.triggerErrors();
-    }
   }
 }

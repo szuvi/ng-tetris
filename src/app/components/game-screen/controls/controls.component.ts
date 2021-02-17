@@ -11,24 +11,24 @@ import {
   styleUrls: ['./controls.component.css'],
 })
 export class ControlsComponent {
+  @Input() gameStatus: string;
   @Output() dirCommand = new EventEmitter<string>();
   @Output() stateCommand = new EventEmitter<string>();
-  @Input() gameStatus: string;
+
   @HostListener('window:keydown', ['$event'])
-  keyEvent(event: KeyboardEvent) {
-    console.log(event.key);
+  public keyEvent(event: KeyboardEvent): void {
     switch (event.key) {
       case 'ArrowLeft':
-        this.handleDirCommand({ target: { name: 'left' } });
+        this.handleDirCommand('left');
         break;
       case 'ArrowDown':
-        this.handleDirCommand({ target: { name: 'down' } });
+        this.handleDirCommand('down');
         break;
       case 'ArrowRight':
-        this.handleDirCommand({ target: { name: 'right' } });
+        this.handleDirCommand('right');
         break;
       case 'ArrowUp':
-        this.handleDirCommand({ target: { name: 'rotate' } });
+        this.handleDirCommand('rotate');
         break;
       case ' ':
         const command =
@@ -37,17 +37,17 @@ export class ControlsComponent {
             : this.gameStatus === 'Started'
             ? 'pause'
             : 'start';
-        this.handleStateCommand({ target: { name: command } });
+        this.handleStateCommand(command);
     }
   }
 
-  public handleStateCommand(event) {
-    if (this.gameStatus !== 'GAME OVER' || event.target.name === 'reset') {
-      this.stateCommand.emit(event.target.name);
+  public handleStateCommand(command): void {
+    if (this.gameStatus !== 'GAME OVER' || command === 'reset') {
+      this.stateCommand.emit(command);
     }
   }
 
-  public handleDirCommand(event) {
-    if (this.gameStatus === 'Started') this.dirCommand.emit(event.target.name);
+  public handleDirCommand(command): void {
+    if (this.gameStatus === 'Started') this.dirCommand.emit(command);
   }
 }
