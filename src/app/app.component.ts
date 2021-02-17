@@ -6,7 +6,7 @@ import { User } from './Interfaces';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public gameActiveState = true;
+  public gameActiveState = false;
 
   public user: User = {
     name: '',
@@ -21,12 +21,3 @@ export class AppComponent {
     this.gameActiveState = false;
   }
 }
-
-// Known bugs:
-//  - sorting and filtering game history works only on select change, not all the time,
-//  - since spacebar is set fot start/pause/reset using mouse click
-//    for controls first and then using spacebar triggers last pressed key each time
-// TODO:
-//  - add more points for multiple lines, combos points
-//  - add history option in mobile view
-//  - add rwd for smaller screens
