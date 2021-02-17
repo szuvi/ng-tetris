@@ -11,11 +11,11 @@
     <div class="nes-select is-dark">
       <select #filter required id="dark_select">
         <option value="all">All</option>
-        <option value="start">Starts</option>
-        <option value="pause">Pauses</option>
-        <option value="reset">Resets</option>
+        <option value="{{ command.start }}">Starts</option>
+        <option value="{{ command.pause }}">Pauses</option>
+        <option value="{{ command.reset }}">Resets</option>
         <option value="move">Moves</option>
-        <option value="game over">Game overs</option>
+        <option value="{{ gameStatus.gameOver }}">Game overs</option>
         <option value="line cleared">Points</option>
       </select>
     </div>

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import HistoryStamp from './helpers/HistoryStamp/HistoryStamp';
-
+import { Command } from './Interfaces';
 @Pipe({
   name: 'sortAndFilter',
 })
@@ -23,17 +23,17 @@ export class SortPipe implements PipeTransform {
         (itemA, itemB) => itemB.timeStamp - itemA.timeStamp
       );
     }
-    console.log(filterVal);
+
     switch (filterVal) {
       case 'all':
         return result;
       case 'move':
         return result.filter(
           (item) =>
-            item.name === 'right' ||
-            item.name === 'left' ||
-            item.name === 'down' ||
-            item.name === 'rotate'
+            item.name === Command.right ||
+            item.name === Command.left ||
+            item.name === Command.down ||
+            item.name === Command.rotate
         );
       default:
         return result.filter((item) => item.name === filterVal);

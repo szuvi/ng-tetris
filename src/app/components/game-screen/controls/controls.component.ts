@@ -5,6 +5,7 @@ import {
   Input,
   HostListener,
 } from '@angular/core';
+import { GameState, Command } from '../../../Interfaces';
 @Component({
   selector: 'controls',
   templateUrl: './controls.component.html',
@@ -12,42 +13,42 @@ import {
 })
 export class ControlsComponent {
   @Input() gameStatus: string;
-  @Output() dirCommand = new EventEmitter<string>();
-  @Output() stateCommand = new EventEmitter<string>();
+  @Output() dirCommand = new EventEmitter<Command>();
+  @Output() stateCommand = new EventEmitter<Command>();
 
   @HostListener('window:keydown', ['$event'])
   public keyEvent(event: KeyboardEvent): void {
     switch (event.key) {
       case 'ArrowLeft':
-        this.handleDirCommand('left');
+        this.handleDirCommand(Command.left);
         break;
       case 'ArrowDown':
-        this.handleDirCommand('down');
+        this.handleDirCommand(Command.down);
         break;
       case 'ArrowRight':
-        this.handleDirCommand('right');
+        this.handleDirCommand(Command.right);
         break;
       case 'ArrowUp':
-        this.handleDirCommand('rotate');
+        this.handleDirCommand(Command.rotate);
         break;
       case ' ':
         const command =
-          this.gameStatus === 'GAME OVER'
-            ? 'reset'
-            : this.gameStatus === 'Started'
-            ? 'pause'
-            : 'start';
+          this.gameStatus === GameState.gameOver
+            ? Command.reset
+            : this.gameStatus === GameState.started
+            ? Command.pause
+            : Command.start;
         this.handleStateCommand(command);
     }
   }
 
-  public handleStateCommand(command): void {
-    if (this.gameStatus !== 'GAME OVER' || command === 'reset') {
+  public handleStateCommand(command: Command): void {
+    if (this.gameStatus !== GameState.gameOver || command === Command.reset) {
       this.stateCommand.emit(command);
     }
   }
 
-  public handleDirCommand(command): void {
-    if (this.gameStatus === 'Started') this.dirCommand.emit(command);
+  public handleDirCommand(command: Command): void {
+    if (this.gameStatus === GameState.started) this.dirCommand.emit(command);
   }
 }

@@ -8,7 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { TetrisCoreComponent } from 'ngx-tetris';
-import { User, Commands } from '../../Interfaces';
+import { User, GameState, Command } from '../../Interfaces';
 import Timer from '../../helpers/timer/Timer';
 import HistoryStamp from '../../helpers/HistoryStamp/HistoryStamp';
 
@@ -25,87 +25,91 @@ export class GameScreenComponent implements OnInit, OnDestroy {
   private timer: Timer;
   private interval: number;
   public gameHistory: Array<HistoryStamp> = [];
-  public gameStatus = 'Paused';
+  public gameStatus = GameState.paused;
   public timePassed = '0.00';
   public score = 0;
 
   // Component lifecycle functions
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.timer = new Timer();
     this.interval = window.setInterval(() => {
       this.timePassed = (this.timer.getTime() / 1000).toFixed(2);
     }, 10);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     clearInterval(this.interval);
   }
 
   // Game  flow controllers
 
-  public handleStateCommand(command) {
-    this.tetris[Commands[command]]();
+  public handleStateCommand(command: Command): void {
+    this.tetris[command]();
     this.changeStatus(command);
     this.handleTimer(command);
     this.gameHistory.push(new HistoryStamp(command, this.timer.getTime()));
-    if (command === 'reset') {
+    if (command === Command.reset) {
       this.gameHistory = [];
     }
   }
 
-  public handleDirCommand(command) {
-    this.tetris[Commands[command]]();
+  public handleDirCommand(command: Command): void {
+    this.tetris[command]();
     this.gameHistory.push(new HistoryStamp(command, this.timer.getTime()));
   }
 
-  public onLineCleared() {
+  public onLineCleared(): void {
     this.score += 10;
     this.gameHistory.push(
       new HistoryStamp('line cleared', this.timer.getTime())
     );
   }
 
-  public onGameOver() {
-    this.gameStatus = 'GAME OVER';
+  public onGameOver(): void {
+    this.gameStatus = GameState.gameOver;
     this.timer.pause();
-    this.gameHistory.push(new HistoryStamp('game over', this.timer.getTime()));
+    this.gameHistory.push(
+      new HistoryStamp(GameState.gameOver, this.timer.getTime())
+    );
   }
 
-  public handleExit() {
+  public handleExit(): void {
     this.exit.emit();
   }
 
   // Helpers
 
-  private changeStatus(command) {
+  private changeStatus(command: Command): void {
     switch (command) {
-      case 'start':
-        this.gameStatus = 'Started';
+      case Command.start:
+        this.gameStatus = GameState.started;
         break;
-      case 'pause':
-        this.gameStatus = 'Paused';
+      case Command.pause:
+        this.gameStatus = GameState.paused;
         break;
-      case 'reset':
+      case Command.reset:
         this.gameStatus =
-          this.gameStatus === 'GAME OVER' ? 'Paused' : this.gameStatus;
+          this.gameStatus === GameState.gameOver
+            ? GameState.paused
+            : this.gameStatus;
         this.score = 0;
         break;
     }
   }
 
-  private handleTimer(command) {
+  private handleTimer(command: Command): void {
     switch (command) {
-      case 'start':
-        if (this.gameStatus === 'GAME OVER') this.timer = new Timer();
+      case Command.start:
+        if (this.gameStatus === GameState.gameOver) this.timer = new Timer();
         this.timer.start();
         break;
-      case 'pause':
+      case Command.pause:
         this.timer.pause();
         break;
-      case 'reset':
+      case Command.reset:
         this.timer = new Timer();
-        if (this.gameStatus === 'Started') this.timer.start();
+        if (this.gameStatus === GameState.started) this.timer.start();
         break;
     }
   }

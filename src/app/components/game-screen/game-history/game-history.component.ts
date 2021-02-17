@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import HistoryStamp from 'src/app/helpers/HistoryStamp/HistoryStamp';
+import { Command, GameState } from '../../../Interfaces';
 
 @Component({
   selector: 'game-history',
@@ -10,8 +11,6 @@ export class GameHistoryComponent {
   @Input() history: Array<HistoryStamp>;
   public sortNewFirst: boolean;
   public filterVal: string;
-
-  public handleTest(item) {
-    console.log(item.checked);
-  }
+  public command = Command;
+  public gameStatus = GameState;
 }
