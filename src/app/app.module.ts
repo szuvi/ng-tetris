@@ -8,7 +8,6 @@ import { GameScreenComponent } from './components/game-screen/game-screen.compon
 import { ControlsComponent } from './components/./game-screen/controls/controls.component';
 import { InfoBoxComponent } from './components/./game-screen/info-box/info-box.component';
 import { GameHistoryComponent } from './components/./game-screen/game-history/game-history.component';
-import { ExitButtonComponent } from './components/./game-screen/exit-button/exit-button.component';
 import { SortPipe } from './sort.pipe';
 
 @NgModule({
@@ -19,7 +18,6 @@ import { SortPipe } from './sort.pipe';
     ControlsComponent,
     InfoBoxComponent,
     GameHistoryComponent,
-    ExitButtonComponent,
     SortPipe,
   ],
   imports: [BrowserModule, TetrisCoreModule, FormsModule],

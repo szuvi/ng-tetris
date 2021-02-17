@@ -62,7 +62,7 @@ export class GameScreenComponent implements OnInit, OnDestroy {
   public onLineCleared(): void {
     this.score += 10;
     this.gameHistory.push(
-      new HistoryStamp('line cleared', this.timer.getTime())
+      new HistoryStamp(GameState.point, this.timer.getTime())
     );
   }
 

@@ -17,6 +17,7 @@ export enum GameState {
   started = 'Started',
   paused = 'Paused',
   gameOver = 'GAME OVER',
+  point = 'Line cleared',
 }
 
 export enum Command {

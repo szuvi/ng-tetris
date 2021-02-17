@@ -13,7 +13,9 @@ export class SortPipe implements PipeTransform {
     if (!history) {
       return null;
     }
+
     let result = history;
+
     if (sortOld) {
       result = history.sort(
         (itemA, itemB) => itemA.timeStamp - itemB.timeStamp
