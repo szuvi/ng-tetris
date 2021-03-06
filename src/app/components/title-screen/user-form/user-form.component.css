@@ -1,0 +1,13 @@
+:host {
+  display: grid;
+}
+.hidden {
+  display: none;
+}
+div {
+  margin-bottom: 1rem;
+}
+
+button {
+  margin-top: 1rem;
+}

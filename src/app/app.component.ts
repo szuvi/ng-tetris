@@ -6,18 +6,8 @@ import { User } from './Interfaces';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public gameActiveState = false;
-
   public user: User = {
     name: '',
     email: '',
   };
-
-  public startGame(): void {
-    this.gameActiveState = true;
-  }
-
-  public exitGame(): void {
-    this.gameActiveState = false;
-  }
 }

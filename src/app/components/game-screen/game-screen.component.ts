@@ -1,16 +1,17 @@
 import {
   Component,
   EventEmitter,
-  Input,
   OnDestroy,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
 import { TetrisCoreComponent } from 'ngx-tetris';
-import { User, GameState, Command } from '../../Interfaces';
+import { GameState, Command } from '../../Interfaces';
 import Timer from '../../helpers/timer/Timer';
 import HistoryStamp from '../../helpers/HistoryStamp/HistoryStamp';
+import { UserDataService } from 'src/app/user-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-screen',
@@ -18,7 +19,7 @@ import HistoryStamp from '../../helpers/HistoryStamp/HistoryStamp';
   styleUrls: ['./game-screen.component.css'],
 })
 export class GameScreenComponent implements OnInit, OnDestroy {
-  @Input() user: User;
+  constructor(private _userService: UserDataService, private _router: Router) {}
   @Output() exit = new EventEmitter<void>();
   @ViewChild(TetrisCoreComponent)
   private tetris: TetrisCoreComponent;
@@ -28,6 +29,7 @@ export class GameScreenComponent implements OnInit, OnDestroy {
   public gameStatus = GameState.paused;
   public timePassed = '0.00';
   public score = 0;
+  public user = this._userService.getUserData();
 
   // Component lifecycle functions
 
@@ -75,7 +77,7 @@ export class GameScreenComponent implements OnInit, OnDestroy {
   }
 
   public handleExit(): void {
-    this.exit.emit();
+    this._router.navigate(['/login']);
   }
 
   // Helpers

@@ -1,8 +1,1 @@
-<app-game-screen
-  *ngIf="gameActiveState; else titleScreen"
-  [user]="user"
-  (exit)="exitGame()"
-></app-game-screen>
-<ng-template #titleScreen>
-  <title-screen [user]="user" (start)="startGame()"></title-screen>
-</ng-template>
+<router-outlet> </router-outlet>

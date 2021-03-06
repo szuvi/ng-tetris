@@ -1,0 +1,47 @@
+<div class="nes-field">
+  <label for="name">Your name</label>
+  <input
+    (keyup)="onNameChange()"
+    (keydown.enter)="onSubmitForm()"
+    [(ngModel)]="name"
+    type="text"
+    id="name"
+    class="nes-input"
+    [ngClass]="{ 'is-error': errors.nameError.status }"
+  />
+  <p
+    class="nes-text is-error"
+    [ngClass]="{ hidden: !errors.nameError.showError }"
+  >
+    {{ errors.nameError.text }}
+  </p>
+</div>
+
+<div class="nes-field">
+  <label for="email">Your email</label>
+  <input
+    (keyup)="onEmailChange()"
+    [(ngModel)]="email"
+    (keydown.enter)="onSubmitForm()"
+    type="text"
+    id="email"
+    class="nes-input"
+    [ngClass]="{ 'is-error': errors.emailError.status }"
+  />
+  <p
+    class="nes-text is-error"
+    [ngClass]="{ hidden: !errors.emailError.showError }"
+  >
+    {{ errors.emailError.text }}
+  </p>
+</div>
+
+<button
+  (click)="onSubmitForm()"
+  type="button"
+  [disabled]="buttonDisabled"
+  class="nes-btn is-success"
+  [ngClass]="{ 'is-disabled': buttonDisabled }"
+>
+  Start
+</button>

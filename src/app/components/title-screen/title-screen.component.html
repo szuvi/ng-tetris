@@ -4,7 +4,8 @@
   <p>
     Welcome to the NG Tetris! <br />Input your name and email to start the game.
   </p>
-
+  <user-form (setUser)="handleSetUser($event)"></user-form>
+  <!-- 
   <div class="nes-field">
     <label for="name">Your name</label>
     <input
@@ -51,5 +52,5 @@
     [ngClass]="{ 'is-disabled': buttonDisabled }"
   >
     Start
-  </button>
+  </button> -->
 </div>
