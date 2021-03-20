@@ -3,21 +3,21 @@
 
   <div class="main-controls">
     <button
-      name="start"
+      name="actionStart"
       (click)="handleStateCommand($event.target.name)"
       class="nes-btn is-success"
     >
       Start
     </button>
     <button
-      name="pause"
+      name="actionStop"
       (click)="handleStateCommand($event.target.name)"
       class="nes-btn is-error"
     >
       Pause
     </button>
     <button
-      name="reset"
+      name="actionReset"
       (click)="handleStateCommand($event.target.name)"
       class="nes-btn is-warning"
     >
@@ -27,28 +27,28 @@
 
   <div class="direction-controls">
     <button
-      name="left"
+      name="actionLeft"
       (click)="handleDirCommand($event.target.name)"
       class="nes-btn"
     >
       Left
     </button>
     <button
-      name="down"
+      name="actionDown"
       (click)="handleDirCommand($event.target.name)"
       class="nes-btn"
     >
       Down
     </button>
     <button
-      name="right"
+      name="actionRight"
       (click)="handleDirCommand($event.target.name)"
       class="nes-btn"
     >
       Right
     </button>
     <button
-      name="rotate"
+      name="actionRotate"
       (click)="handleDirCommand($event.target.name)"
       class="nes-btn"
     >
