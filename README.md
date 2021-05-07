@@ -2,6 +2,8 @@
 
 This is my try on creating game using [ngx-tetris](https://github.com/chrum/ngx-tetris) module.
 
+Here is [deployed version](https://sleepy-elion-500549.netlify.app/)
+
 ## Known bugs:
 
 - sorting and filtering game history works only on select change, not all the time
