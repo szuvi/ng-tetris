@@ -1,0 +1,21 @@
+<input type="text" placeholder="Filter by name" [(ngModel)]="nameFilter" />
+<button (click)="toggleAscending()">
+  {{ sortAscending ? "Sort Descending" : "Sort Ascending" }}
+</button>
+<label for="refresh">
+  Auto-refresh?
+  <input type="checkbox" id="refresh" [(ngModel)]="autoRefresh" />
+</label>
+<ul>
+  <li
+    *ngFor="
+      let score of scoresData$
+        | async
+        | filterByName: nameFilter
+        | sortByScore: sortAscending
+    "
+  >
+    {{ score.name }} - {{ score.score }}
+  </li>
+</ul>
+<button type="button" (click)="return()">Return</button>

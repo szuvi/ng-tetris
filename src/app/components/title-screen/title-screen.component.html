@@ -5,52 +5,7 @@
     Welcome to the NG Tetris! <br />Input your name and email to start the game.
   </p>
   <user-form (setUser)="handleSetUser($event)"></user-form>
-  <!-- 
-  <div class="nes-field">
-    <label for="name">Your name</label>
-    <input
-      (keyup)="onNameChange()"
-      (keydown.enter)="onSubmitForm()"
-      [(ngModel)]="user.name"
-      type="text"
-      id="name"
-      class="nes-input"
-      [ngClass]="{ 'is-error': errors.nameError.status }"
-    />
-    <p
-      class="nes-text is-error"
-      [ngClass]="{ hidden: !errors.nameError.showError }"
-    >
-      {{ errors.nameError.text }}
-    </p>
-  </div>
-
-  <div class="nes-field">
-    <label for="email">Your email</label>
-    <input
-      (keyup)="onEmailChange()"
-      [(ngModel)]="user.email"
-      (keydown.enter)="onSubmitForm()"
-      type="text"
-      id="email"
-      class="nes-input"
-      [ngClass]="{ 'is-error': errors.emailError.status }"
-    />
-    <p
-      class="nes-text is-error"
-      [ngClass]="{ hidden: !errors.emailError.showError }"
-    >
-      {{ errors.emailError.text }}
-    </p>
-  </div>
-
-  <button
-    (click)="onSubmitForm()"
-    type="button"
-    [disabled]="buttonDisabled"
-    class="nes-btn is-success"
-    [ngClass]="{ 'is-disabled': buttonDisabled }"
-  >
-    Start
-  </button> -->
+  <p *ngIf="validationError">
+    {{ validationError }}
+  </p>
 </div>

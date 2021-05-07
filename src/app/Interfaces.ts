@@ -1,17 +1,7 @@
 export interface User {
   name: string;
-  email: string;
+  code: number;
 }
-
-// export const Commands = {
-//   start: 'actionStart',
-//   pause: 'actionStop',
-//   reset: 'actionReset',
-//   left: 'actionLeft',
-//   right: 'actionRight',
-//   down: 'actionDown',
-//   rotate: 'actionRotate',
-// };
 
 export enum GameState {
   started = 'Started',

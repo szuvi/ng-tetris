@@ -12,6 +12,7 @@ import Timer from '../../helpers/timer/Timer';
 import HistoryStamp from '../../helpers/HistoryStamp/HistoryStamp';
 import { UserDataService } from 'src/app/user-data.service';
 import { Router } from '@angular/router';
+import { ScoresService } from 'src/app/scores.service';
 
 @Component({
   selector: 'app-game-screen',
@@ -19,7 +20,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./game-screen.component.css'],
 })
 export class GameScreenComponent implements OnInit, OnDestroy {
-  constructor(private _userService: UserDataService, private _router: Router) {}
+  constructor(
+    private _userService: UserDataService,
+    private _router: Router,
+    private _scores: ScoresService
+  ) {}
   @Output() exit = new EventEmitter<void>();
   @ViewChild(TetrisCoreComponent)
   private tetris: TetrisCoreComponent;
@@ -74,6 +79,7 @@ export class GameScreenComponent implements OnInit, OnDestroy {
     this.gameHistory.push(
       new HistoryStamp(GameState.gameOver, this.timer.getTime())
     );
+    this._scores.submitScore(this.score).subscribe((res) => {});
   }
 
   public handleExit(): void {

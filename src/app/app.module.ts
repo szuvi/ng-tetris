@@ -11,7 +11,10 @@ import { GameHistoryComponent } from './components/./game-screen/game-history/ga
 import { SortPipe } from './sort.pipe';
 import { RouterModule } from '@angular/router';
 import { UserFormComponent } from './components/title-screen/user-form/user-form.component';
-
+import { HighScoresComponent } from './components/high-scores/high-scores.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SortByScorePipe } from './components/high-scores/sort-by-score.pipe';
+import { FilterByNamePipe } from './components/high-scores/filter-by-name.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +25,9 @@ import { UserFormComponent } from './components/title-screen/user-form/user-form
     GameHistoryComponent,
     SortPipe,
     UserFormComponent,
+    HighScoresComponent,
+    SortByScorePipe,
+    FilterByNamePipe,
   ],
   imports: [
     BrowserModule,
@@ -30,8 +36,10 @@ import { UserFormComponent } from './components/title-screen/user-form/user-form
     RouterModule.forRoot([
       { path: 'login', component: TitleScreenComponent },
       { path: 'game', component: GameScreenComponent },
+      { path: 'highscore', component: HighScoresComponent },
       { path: '**', component: TitleScreenComponent },
     ]),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

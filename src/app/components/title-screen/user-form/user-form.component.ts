@@ -6,10 +6,10 @@ import { User } from 'src/app/Interfaces';
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css'],
 })
-export class UserFormComponent implements OnInit {
+export class UserFormComponent {
   @Output() setUser = new EventEmitter<User>();
   public name: string;
-  public email: string;
+  public code: string;
   public buttonDisabled = true;
   public errors = {
     nameError: {
@@ -17,17 +17,12 @@ export class UserFormComponent implements OnInit {
       showError: false,
       text: 'Incorrect name input!',
     },
-    emailError: {
+    codeError: {
       status: false,
       showError: false,
-      text: 'Incorrect email input!',
+      text: 'Incorrect code input!',
     },
   };
-
-  ngOnInit(): void {
-    // this.name = '';
-    // this.email = '';
-  }
 
   public onNameChange(): void {
     if (this.name.length < 3) {
@@ -38,22 +33,31 @@ export class UserFormComponent implements OnInit {
     this.checkButton();
   }
 
-  public onEmailChange(): void {
-    if (
-      !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-        this.email
-      )
-    ) {
-      this.errors.emailError.status = true;
+  public onCodeChange(): void {
+    if (this.code.length !== 4 && !isNaN(+this.code)) {
+      this.errors.codeError.status = true;
     } else {
-      this.errors.emailError.status = false;
+      this.errors.codeError.status = false;
     }
     this.checkButton();
   }
 
+  // public onEmailChange(): void {
+  //   if (
+  //     !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+  //       this.email
+  //     )
+  //   ) {
+  //     this.errors.emailError.status = true;
+  //   } else {
+  //     this.errors.emailError.status = false;
+  //   }
+  //   this.checkButton();
+  // }
+
   public onSubmitForm(): void {
     if (!this.buttonDisabled) {
-      this.setUser.emit({ name: this.name, email: this.email });
+      this.setUser.emit({ name: this.name, code: +this.code });
     } else {
       this.triggerErrors();
     }
@@ -62,13 +66,13 @@ export class UserFormComponent implements OnInit {
   private checkButton(): void {
     this.buttonDisabled =
       !this.name ||
-      !this.email ||
+      !this.code ||
       this.errors.nameError.status ||
-      this.errors.emailError.status;
+      this.errors.codeError.status;
   }
 
   private triggerErrors(): void {
     this.errors.nameError.showError = this.errors.nameError.status;
-    this.errors.emailError.showError = this.errors.emailError.status;
+    this.errors.codeError.showError = this.errors.codeError.status;
   }
 }

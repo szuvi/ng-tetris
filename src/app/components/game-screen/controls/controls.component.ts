@@ -5,6 +5,7 @@ import {
   Input,
   HostListener,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { GameState, Command } from '../../../Interfaces';
 @Component({
   selector: 'controls',
@@ -15,6 +16,8 @@ export class ControlsComponent {
   @Input() gameStatus: string;
   @Output() dirCommand = new EventEmitter<Command>();
   @Output() stateCommand = new EventEmitter<Command>();
+
+  constructor(private _router: Router) {}
 
   @HostListener('window:keydown', ['$event'])
   public keyEvent(event: KeyboardEvent): void {
@@ -50,5 +53,9 @@ export class ControlsComponent {
 
   public handleDirCommand(command: Command): void {
     if (this.gameStatus === GameState.started) this.dirCommand.emit(command);
+  }
+
+  navigateToScores() {
+    this._router.navigate(['/highscore']);
   }
 }

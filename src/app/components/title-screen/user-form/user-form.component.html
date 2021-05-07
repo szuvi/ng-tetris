@@ -18,21 +18,21 @@
 </div>
 
 <div class="nes-field">
-  <label for="email">Your email</label>
+  <label for="code">Your code</label>
   <input
-    (keyup)="onEmailChange()"
-    [(ngModel)]="email"
+    (keyup)="onCodeChange()"
+    [(ngModel)]="code"
     (keydown.enter)="onSubmitForm()"
-    type="text"
-    id="email"
+    type="password"
+    id="code"
     class="nes-input"
-    [ngClass]="{ 'is-error': errors.emailError.status }"
+    [ngClass]="{ 'is-error': errors.codeError.status }"
   />
   <p
     class="nes-text is-error"
-    [ngClass]="{ hidden: !errors.emailError.showError }"
+    [ngClass]="{ hidden: !errors.codeError.showError }"
   >
-    {{ errors.emailError.text }}
+    {{ errors.codeError.text }}
   </p>
 </div>
 

@@ -8,6 +8,6 @@ import { User } from './Interfaces';
 export class AppComponent {
   public user: User = {
     name: '',
-    email: '',
+    code: 0,
   };
 }

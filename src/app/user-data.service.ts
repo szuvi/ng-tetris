@@ -5,14 +5,15 @@ import { User } from './Interfaces';
   providedIn: 'root',
 })
 export class UserDataService {
-  private user: User = { name: '', email: '' };
+  private user: User = { name: '', code: 0 };
+  constructor() {}
 
   getUserData() {
     return this.user;
   }
 
-  setUserData(name, email) {
+  setUserData(name, code) {
     this.user.name = name;
-    this.user.email = email;
+    this.user.code = +code;
   }
 }
