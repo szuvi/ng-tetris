@@ -28,6 +28,21 @@
     class="nes-input"
     [ngClass]="{ 'is-error': errors.codeError.status }"
   />
+
+  <label for="colorPalette">Color Palette</label>
+  <div class="nes-select">
+    <select
+      [(ngModel)]="colorPalette"
+      required
+      name="colorPalette"
+      class="nes-select"
+      id="colorPalette"
+    >
+      <option selected value="normal">Normal</option>
+      <option value="highContrast">High Contrast</option>
+    </select>
+  </div>
+
   <p
     class="nes-text is-error"
     [ngClass]="{ hidden: !errors.codeError.showError }"

@@ -35,7 +35,7 @@ import { FilterByNamePipe } from './components/high-scores/filter-by-name.pipe';
     FormsModule,
     RouterModule.forRoot([
       { path: 'login', component: TitleScreenComponent },
-      { path: 'game', component: GameScreenComponent },
+      { path: 'game/:colorPalette', component: GameScreenComponent },
       { path: 'highscore', component: HighScoresComponent },
       { path: '**', component: TitleScreenComponent },
     ]),

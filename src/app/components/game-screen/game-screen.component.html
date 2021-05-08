@@ -20,12 +20,14 @@
   ></info-box>
   <div class="the-game nes-container">
     <tetris-core
+      [ngClass]="{ 'black-and-white': colorPalette === 'highContrast' }"
       (lineCleared)="onLineCleared()"
       (gameOver)="onGameOver()"
     ></tetris-core>
   </div>
   <game-history class="history" [history]="gameHistory"></game-history>
   <controls
+    [togglePalette]="togglePalette"
     [gameStatus]="gameStatus"
     (dirCommand)="handleDirCommand($event)"
     (stateCommand)="handleStateCommand($event)"

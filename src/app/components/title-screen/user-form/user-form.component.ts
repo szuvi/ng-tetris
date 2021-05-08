@@ -7,7 +7,7 @@ import { User } from 'src/app/Interfaces';
   styleUrls: ['./user-form.component.css'],
 })
 export class UserFormComponent {
-  @Output() setUser = new EventEmitter<User>();
+  @Output() setUser = new EventEmitter<any>();
   public name: string;
   public code: string;
   public buttonDisabled = true;
@@ -23,6 +23,7 @@ export class UserFormComponent {
       text: 'Incorrect code input!',
     },
   };
+  public colorPalette: string = 'normal';
 
   public onNameChange(): void {
     if (this.name.length < 3) {
@@ -42,22 +43,13 @@ export class UserFormComponent {
     this.checkButton();
   }
 
-  // public onEmailChange(): void {
-  //   if (
-  //     !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-  //       this.email
-  //     )
-  //   ) {
-  //     this.errors.emailError.status = true;
-  //   } else {
-  //     this.errors.emailError.status = false;
-  //   }
-  //   this.checkButton();
-  // }
-
   public onSubmitForm(): void {
     if (!this.buttonDisabled) {
-      this.setUser.emit({ name: this.name, code: +this.code });
+      this.setUser.emit({
+        name: this.name,
+        code: +this.code,
+        colorPalette: this.colorPalette,
+      });
     } else {
       this.triggerErrors();
     }

@@ -16,6 +16,7 @@ export class ControlsComponent {
   @Input() gameStatus: string;
   @Output() dirCommand = new EventEmitter<Command>();
   @Output() stateCommand = new EventEmitter<Command>();
+  @Input() togglePalette: Function;
 
   constructor(private _router: Router) {}
 

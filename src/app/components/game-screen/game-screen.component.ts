@@ -13,6 +13,7 @@ import HistoryStamp from '../../helpers/HistoryStamp/HistoryStamp';
 import { UserDataService } from 'src/app/user-data.service';
 import { Router } from '@angular/router';
 import { ScoresService } from 'src/app/scores.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-game-screen',
@@ -23,8 +24,14 @@ export class GameScreenComponent implements OnInit, OnDestroy {
   constructor(
     private _userService: UserDataService,
     private _router: Router,
+    private _route: ActivatedRoute,
     private _scores: ScoresService
-  ) {}
+  ) {
+    this._route.params.subscribe(({ colorPalette }) => {
+      this.colorPalette = colorPalette;
+      console.log(colorPalette);
+    });
+  }
   @Output() exit = new EventEmitter<void>();
   @ViewChild(TetrisCoreComponent)
   private tetris: TetrisCoreComponent;
@@ -35,7 +42,7 @@ export class GameScreenComponent implements OnInit, OnDestroy {
   public timePassed = '0.00';
   public score = 0;
   public user = this._userService.getUserData();
-
+  public colorPalette: string;
   // Component lifecycle functions
 
   ngOnInit(): void {
@@ -84,6 +91,13 @@ export class GameScreenComponent implements OnInit, OnDestroy {
 
   public handleExit(): void {
     this._router.navigate(['/login']);
+  }
+
+  public togglePalette(): void {
+    const param = this.colorPalette === 'normal' ? 'highContrast' : 'normal';
+    console.log(this.colorPalette);
+    console.log(param);
+    this._router.navigate(['/game', param]);
   }
 
   // Helpers

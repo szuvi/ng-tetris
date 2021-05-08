@@ -47,6 +47,10 @@
   grid-row: 8 / span 1;
 }
 
+.black-and-white {
+  background-color: #000;
+}
+
 @media screen and (max-width: 900px) {
   .game-screen-container {
     grid-template-columns: 1fr 14fr 1fr 7fr 1fr;

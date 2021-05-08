@@ -19,22 +19,13 @@ export class TitleScreenComponent {
   public user: User;
   public validationError = '';
 
-  public handleSetUser({ name, code }) {
+  public handleRouting({ name, code, colorPalette }) {
     if (this._scores.validate(code)) {
       this._userService.setUserData(name, code);
       this.validationError = '';
-      this._router.navigate(['/game']);
+      this._router.navigate(['/game', colorPalette]);
     } else {
       this.validationError = 'Incorrect Code!';
     }
-    // this._scores.validate(code).subscribe((res) => {
-    //   if (res.success) {
-    //     this._userService.setUserData(name, code);
-    //     this.validationError = '';
-    //     this._router.navigate(['/game']);
-    //   } else {
-    //     this.validationError = 'Incorrect Code!';
-    //   }
-    // });
   }
 }
