@@ -21,17 +21,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./game-screen.component.css'],
 })
 export class GameScreenComponent implements OnInit, OnDestroy {
-  constructor(
-    private _userService: UserDataService,
-    private _router: Router,
-    private _route: ActivatedRoute,
-    private _scores: ScoresService
-  ) {
-    this._route.params.subscribe(({ colorPalette }) => {
-      this.colorPalette = colorPalette;
-      console.log(colorPalette);
-    });
-  }
   @Output() exit = new EventEmitter<void>();
   @ViewChild(TetrisCoreComponent)
   private tetris: TetrisCoreComponent;
@@ -43,9 +32,22 @@ export class GameScreenComponent implements OnInit, OnDestroy {
   public score = 0;
   public user = this._userService.getUserData();
   public colorPalette: string;
+  constructor(
+    private _userService: UserDataService,
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _scores: ScoresService
+  ) {
+    this.togglePalette = this.togglePalette.bind(this);
+  }
   // Component lifecycle functions
 
   ngOnInit(): void {
+    this._route.params.subscribe(({ colorPalette }) => {
+      this.colorPalette = colorPalette;
+      console.log(colorPalette);
+    });
+
     this.timer = new Timer();
     this.interval = window.setInterval(() => {
       this.timePassed = (this.timer.getTime() / 1000).toFixed(2);
@@ -95,8 +97,6 @@ export class GameScreenComponent implements OnInit, OnDestroy {
 
   public togglePalette(): void {
     const param = this.colorPalette === 'normal' ? 'highContrast' : 'normal';
-    console.log(this.colorPalette);
-    console.log(param);
     this._router.navigate(['/game', param]);
   }
 
